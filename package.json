@@ -1,0 +1,18 @@
+{
+  "name": "07-restserver",
+  "version": "1.0.0",
+  "description": "Section 8 - Node.js with Fernando Herrera",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gubiarpa",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "dotenv": "^14.3.2",
+    "express": "^4.17.2"
+  }
+}

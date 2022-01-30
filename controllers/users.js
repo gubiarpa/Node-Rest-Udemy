@@ -1,3 +1,4 @@
+
 const { request, response } = require('express');
 
 const usersGet = (req = request, res = response) => {
@@ -5,7 +6,7 @@ const usersGet = (req = request, res = response) => {
   const { q, nombre, apiKey } = req.query;
 
   res.json({
-    msg: 'Get Response from Controller',
+    msg: `Get Response from Controller and born on ${ process.env.BORN }`,
     q, nombre, apiKey
   });
 }

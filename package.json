@@ -4,7 +4,7 @@
   "description": "Section 8 - Node.js with Fernando Herrera",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app"
   },
   "author": "gubiarpa",
   "license": "ISC",

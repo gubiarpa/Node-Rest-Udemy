@@ -1,4 +1,4 @@
-const { response } = require('express');
+const { request, response } = require('express');
 
 const usersGet = (req, res = response) => {
   res.json({
@@ -6,15 +6,16 @@ const usersGet = (req, res = response) => {
   });
 }
 
-const usersPut = (req, res = response) => {
+const usersPost = (req = request, res = response) => {
+  const { nombre, edad } = req.body;
   res.json({
-    msg: 'Put Response from Controller'
+    msg: `Post Response from Controller to ${ nombre } who will be ${ edad + 1 }`
   });
 }
 
-const usersPost = (req, res = response) => {
+const usersPut = (req, res = response) => {
   res.json({
-    msg: 'Post Response from Controller'
+    msg: 'Put Response from Controller'
   });
 }
 

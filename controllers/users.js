@@ -1,5 +1,5 @@
-
 const { request, response } = require('express');
+const User = require('../models/user');
 
 const usersGet = (req = request, res = response) => {
 
@@ -11,10 +11,13 @@ const usersGet = (req = request, res = response) => {
   });
 }
 
-const usersPost = (req = request, res = response) => {
-  const { nombre, edad } = req.body;
+const usersPost = async(req = request, res = response) => {
+  const { body } = req;
+  const user = new User(body);
+  await user.save();
   res.json({
-    msg: `Post Response from Controller to ${ nombre } who will be ${ edad + 1 }`
+    msg: `Post Response from Controller in ${ process.env.BORN }`,
+    user
   });
 }
 

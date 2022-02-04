@@ -9,7 +9,7 @@ router.get('/', usersGet);
 router.put('/:id', usersPut);
 
 router.post('/', [
-    check('correo', 'Invalid email').isEmail(),
+    check('email', 'Invalid email').isEmail(),
     ],
     usersPost);
 

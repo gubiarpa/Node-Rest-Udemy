@@ -17,7 +17,7 @@ const usersPost = async(req = request, res = response) => {
 
   // Check if it is a valid email
   const errors = validationResult(req);
-  if (errors.isEmpty()) {
+  if (!errors.isEmpty()) {
     return res.status(400).json(errors);
   }
 

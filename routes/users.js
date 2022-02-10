@@ -3,7 +3,7 @@ const { usersGet, usersPut, usersPost, usersDelete, usersPatch } = require('../c
 
 const { check } = require('express-validator');
 const { validateFields } = require('../middlewares/validate-fields');
-const { isValidRole } = require('../helpers/db-validators');
+const { isValidRole, emailExists } = require('../helpers/db-validators');
 
 const router = Router();
 
@@ -16,6 +16,7 @@ router.post('/', [
     check('password', 'Password must be a string with 6 characthers').isLength({min: 6}),
     check('role').custom(isValidRole),
     check('email', 'Invalid email').isEmail(),
+    check('email', 'Email exists').custom(emailExists),
     validateFields,
     ],
     usersPost);

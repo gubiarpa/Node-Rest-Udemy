@@ -40,7 +40,7 @@ const usersPost = async(req = request, res = response) => {
 const usersPut = async(req, res = response) => {
   
   const { id } = req.params;
-  const { password, google, email, ...payload } = req.body;
+  const { _id, password, google, email, ...payload } = req.body;
   
   // TODO: Valid againt database
   if (password) {

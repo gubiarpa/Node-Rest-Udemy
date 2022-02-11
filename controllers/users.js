@@ -28,22 +28,32 @@ const usersPost = async(req = request, res = response) => {
   // Encrypt password
   const salt = bcryptjs.genSaltSync();
   user.password = bcryptjs.hashSync(password, salt);
-
+  
   // Save in DB
   await user.save();
-
+  
   res.json({
     user
   });
 }
 
-const usersPut = (req, res = response) => {
-
+const usersPut = async(req, res = response) => {
+  
   const { id } = req.params;
+  const { password, google, email, ...payload } = req.body;
+  
+  // TODO: Valid againt database
+  if (password) {
+    // Encrypt password
+    const salt = bcryptjs.genSaltSync();
+    payload.password = bcryptjs.hashSync(password, salt);
+  }
+
+  const usuario = await User.findByIdAndUpdate(id, payload);
 
   res.json({
     msg: 'Put Response from Controller',
-    id
+    payload
   });
 }
 

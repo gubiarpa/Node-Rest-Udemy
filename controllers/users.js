@@ -8,7 +8,7 @@ const usersGet = async(req = request, res = response) => {
   const query = { state: true };
 
   const [totalRows, users] = await Promise.all([
-    User.countDocuments(),
+    User.countDocuments(query),
     User.find(query).skip(from).limit(limit)
   ]);
     
@@ -62,9 +62,15 @@ const usersPut = async(req, res = response) => {
   });
 }
 
-const usersDelete = (req, res = response) => {
+const usersDelete = async(req, res = response) => {
+
+  const { id } = req.params;
+
+  // We do physycal elimination
+  const user = await User.findByIdAndDelete(id);
+
   res.json({
-    msg: 'Delete Response from Controller'
+    user
   });
 }
 

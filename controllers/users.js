@@ -2,13 +2,19 @@ const { request, response } = require('express');
 const bcryptjs = require('bcryptjs');
 const User = require('../models/user');
 
-const usersGet = (req = request, res = response) => {
+const usersGet = async(req = request, res = response) => {
 
-  const { q, nombre, apiKey } = req.query;
+  const { from = 0, limit = 5 } = req.query;
+  const query = { state: true };
 
+  const [totalRows, users] = await Promise.all([
+    User.countDocuments(),
+    User.find(query).skip(from).limit(limit)
+  ]);
+    
   res.json({
-    msg: `Get Response from Controller and born on ${ process.env.BORN }`,
-    q, nombre, apiKey
+    totalRows,
+    users
   });
 }
 
@@ -52,8 +58,7 @@ const usersPut = async(req, res = response) => {
   const usuario = await User.findByIdAndUpdate(id, payload);
 
   res.json({
-    msg: 'Put Response from Controller',
-    payload
+    usuario
   });
 }
 

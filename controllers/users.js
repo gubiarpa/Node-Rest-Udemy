@@ -4,6 +4,7 @@ const User = require('../models/user');
 
 const usersGet = async(req = request, res = response) => {
 
+  const { uid } = req;
   const { from = 0, limit = 5 } = req.query;
   const query = { state: true };
 
@@ -13,6 +14,7 @@ const usersGet = async(req = request, res = response) => {
   ]);
     
   res.json({
+    uid,
     totalRows,
     users
   });

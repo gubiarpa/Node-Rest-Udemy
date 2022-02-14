@@ -4,10 +4,14 @@ const { usersGet, usersPut, usersPost, usersDelete, usersPatch } = require('../c
 const { check } = require('express-validator');
 const { validateFields } = require('../middlewares/validate-fields');
 const { isValidRole, emailExists, userExistsById } = require('../helpers/db-validators');
+const { validateJwt } = require('../middlewares/validate-jwt');
 
 const router = Router();
 
-router.get('/', usersGet);
+router.get('/', [
+    validateJwt
+    ],
+    usersGet);
 
 router.put('/:id', [
     check('id', 'No es un id válido').isMongoId(),
